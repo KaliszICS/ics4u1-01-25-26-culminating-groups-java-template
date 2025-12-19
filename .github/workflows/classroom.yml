@@ -1,7 +1,7 @@
 name: Autograding Tests
 'on':
-- push
-- repository_dispatch
+  - push
+  - repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -11,20 +11,34 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Test 1
-      id: test-1
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Test 1
-        setup-command: mvn compile
-        command: mvn test
-        timeout: 10
-        max-score: 10
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        TEST-1_RESULTS: "${{steps.test-1.outputs.result}}"
-      with:
-        runners: test-1
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Test 1
+        id: test-1
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test 1
+          setup-command: mvn compile
+          command: mvn test
+          timeout: 10
+          max-score: 10
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TEST-1_RESULTS: "${{steps.test-1.outputs.result}}"
+        with:
+          runners: test-1
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Codacy Analysis
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          verbose: true
+      - name: Upload test results to Codacy
+        run: |
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r target/site/jacoco/jacoco.xml
