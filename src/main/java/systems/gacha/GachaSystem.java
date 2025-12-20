@@ -15,7 +15,7 @@ public class GachaSystem {
     private boolean guaranteed5Star;
     private List<String> pullHistory;
     private List<String> characterPullHistory;
-
+    private Random random;
     private PitySystem pitySystem;
     private PitySystem characterPitySystem; // 专门用于角色的保底系统
 
@@ -28,6 +28,7 @@ public class GachaSystem {
         probabilityTable[0][2] = 0.943;
         probabilityTable[1][2] = 0.051;
         probabilityTable[2][2] = 0.006;
+        Random random = new Random();
 
         pityCounter5Star = 0;
         pityCounter4Star = 0;
@@ -205,7 +206,6 @@ public class GachaSystem {
     }
 
     private Character getRandomCharacterByRarity(int rarity) {
-        Random random = new Random();
 
         switch (rarity) {
             case 5:
@@ -250,8 +250,6 @@ public class GachaSystem {
     }
 
     private Item getRandomItemByRarity(int rarity) {
-        Random random = new Random();
-
         switch (rarity) {
             case 5:
                 // 50%概率光锥，50%概率材料
