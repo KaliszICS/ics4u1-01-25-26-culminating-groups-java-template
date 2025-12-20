@@ -10,12 +10,11 @@ public class BossEnemy extends Enemy {
         this.hasPhases = true;
         this.currentPhase = 1;
         this.phaseMessages = new String[]{
-                "第一形态：你们无法阻止我！",
-                "第二形态：这还不是我的全部力量！",
-                "最终形态：感受绝望吧！"
+                "Phase 1: You cannot stop me!",
+                "Phase 2: This is not all of my power!",
+                "Phase 3: Feel the despair!"
         };
-
-        // Boss属性增强
+        // Enhance Attributes for boss
         maxHP *= 3;
         currentHP = maxHP;
         attack *= 2;
@@ -24,17 +23,15 @@ public class BossEnemy extends Enemy {
     }
 
     public BossEnemy(String name, int phases) {
-        super(name, 10); // Boss默认难度为10
+        super(name, 10); // Boss default difficulty: 10
         this.hasPhases = phases > 1;
         this.currentPhase = 1;
         this.phaseMessages = new String[phases];
-
-        // 初始化阶段消息
+        // initialize phase message
         for (int i = 0; i < phases; i++) {
-            phaseMessages[i] = name + " 第" + (i + 1) + "形态";
+            phaseMessages[i] = name + " Phase " + (i + 1) + " form.";
         }
-
-        // Boss属性增强
+        // Enhance Attributes for boss
         maxHP *= 3;
         currentHP = maxHP;
         attack *= 2;
@@ -42,47 +39,51 @@ public class BossEnemy extends Enemy {
         speed += 5;
     }
 
+    public boolean hasPhases() { return hasPhases; }
+    public void setHasPhases(boolean hasPhases) { this.hasPhases = hasPhases; }
+    public int getCurrentPhase() { return currentPhase; }
+    public void setCurrentPhase(int currentPhase) { this.currentPhase = currentPhase; }
+    public String[] getPhaseMessages() { return phaseMessages; }
+    public void setPhaseMessages(String[] phaseMessages) { this.phaseMessages = phaseMessages; }
+
     public void transitionPhase() {
         if (!hasPhases || currentPhase >= phaseMessages.length) {
-            System.out.println(name + " 已经是最终形态了！");
+            System.out.println(name + " is on final phase.");
             return;
         }
-
         currentPhase++;
         System.out.println(phaseMessages[currentPhase - 1]);
-
-        // 每进入新阶段，恢复部分生命并增强属性
+        // When enter new phase, heal characters attributes
         currentHP = Math.min(currentHP + maxHP / 2, maxHP);
         attack += 10;
         defense += 5;
 
-        System.out.println(name + " 进入第 " + currentPhase + " 阶段！");
-        System.out.println("生命值恢复，攻击和防御提升！");
+        System.out.println(name + " entering Phase " + currentPhase + "!");
+        System.out.println("Heal HP and added attack and defense");
     }
 
     public void useSpecialAttack() {
-        System.out.println(name + " 发动特殊攻击！");
+        System.out.println(name + " used special attack skill");
 
         switch (currentPhase) {
             case 1:
-                System.out.println("范围攻击：对所有敌人造成伤害！");
+                System.out.println("Area of effect attack: Caused damage to all enemies!");
                 break;
             case 2:
-                System.out.println("召唤援军：召唤小怪协助战斗！");
+                System.out.println("Summon reinforcements: Summons minions to assist in the battle!");
                 break;
             case 3:
-                System.out.println("灭世一击：造成巨额伤害！");
+                System.out.println("A devastating blow: cause massive damage! Please be careful!");
                 break;
             default:
-                System.out.println("强力攻击！");
+                System.out.println("Powerful attack!");
         }
     }
 
     @Override
     public void takeDamage(int damage) {
         super.takeDamage(damage);
-
-        // 检查是否需要进入下一阶段
+        // check if entering new phase
         if (hasPhases && currentPhase < phaseMessages.length) {
             int phaseThreshold = maxHP / phaseMessages.length;
             int remainingPhases = phaseMessages.length - currentPhase;
@@ -95,7 +96,7 @@ public class BossEnemy extends Enemy {
 
     @Override
     public void useSkill() {
-        if (random.nextDouble() < 0.3) { // 30%概率使用特殊攻击
+        if (random.nextDouble() < 0.3) { // boss 30% chance cause special attack
             useSpecialAttack();
         } else {
             super.useSkill();
@@ -105,8 +106,8 @@ public class BossEnemy extends Enemy {
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("Boss类型: " + (hasPhases ? "多阶段" : "单阶段"));
-        System.out.println("当前阶段: " + currentPhase + "/" + phaseMessages.length);
+        System.out.println("Boss type: " + (hasPhases ? "Multi-phase boss" : "Single-phase boss"));
+        System.out.println("Current phase: " + currentPhase + "/" + phaseMessages.length);
     }
 
     @Override
@@ -118,16 +119,8 @@ public class BossEnemy extends Enemy {
                 phases.append(msg);
             }
         }
-
-        return super.toCSVFormat() + String.format(",%b,%d,\"%s\"",
-                hasPhases, currentPhase, phases.toString());
+        String var = phases.toString();
+        String var2 = "," + hasPhases + "," + currentPhase + ",\"" + var.replace("\"", "\"\"") + "\"";
+        return super.toCSVFormat() + var2;
     }
-
-    // Getter 和 Setter
-    public boolean hasPhases() { return hasPhases; }
-    public void setHasPhases(boolean hasPhases) { this.hasPhases = hasPhases; }
-    public int getCurrentPhase() { return currentPhase; }
-    public void setCurrentPhase(int currentPhase) { this.currentPhase = currentPhase; }
-    public String[] getPhaseMessages() { return phaseMessages; }
-    public void setPhaseMessages(String[] phaseMessages) { this.phaseMessages = phaseMessages; }
 }

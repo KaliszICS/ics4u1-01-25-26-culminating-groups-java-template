@@ -13,38 +13,44 @@ public class RegularEnemy extends Enemy {
     public RegularEnemy(String name, boolean elite) {
         super(name, elite ? 5 : 1);
         this.isElite = elite;
-        this.canCallReinforcements = elite; // 精英怪可以召唤援军
+        this.canCallReinforcements = elite; // elite mobs can summon reinforcements
 
         if (elite) {
-            // 精英怪属性增强
+            // enhance elite mob's attributes
             maxHP += 50;
             currentHP = maxHP;
             attack += 10;
             defense += 5;
             speed += 3;
-            dropRate += 0.2; // 精英怪掉落率更高
+            dropRate += 0.2; // elite mobs have higher drop rate
         }
     }
 
+    public boolean isElite() { return isElite; }
+    public void setElite(boolean elite) { isElite = elite; }
+    public boolean canCallReinforcements() { return canCallReinforcements; }
+    public void setCanCallReinforcements(boolean canCallReinforcements) {
+        this.canCallReinforcements = canCallReinforcements;
+    }
     public void callReinforcements() {
         if (!canCallReinforcements) {
-            System.out.println(name + " 无法召唤援军");
+            System.out.println(name + " cannot call reinforcements");
             return;
         }
 
-        System.out.println(name + " 召唤了援军！");
+        System.out.println(name + " summoned reinforcements");
 
         if (isElite) {
-            System.out.println("召唤了3个普通敌人作为援军！");
+            System.out.println("Summoned 3 reinforcements");
             // 在实际游戏中，这里会创建新的敌人对象
         } else {
-            System.out.println("试图召唤援军但失败了！");
+            System.out.println("Tried to summon reinforcements, but failed");
         }
     }
 
     @Override
     public void useSkill() {
-        if (isElite && random.nextDouble() < 0.4) { // 40%概率召唤援军
+        if (isElite && random.nextDouble() < 0.4) { // 40% Chance summon reinforcement
             callReinforcements();
         } else {
             super.useSkill();
@@ -54,20 +60,13 @@ public class RegularEnemy extends Enemy {
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("敌人类型: " + (isElite ? "精英" : "普通"));
-        System.out.println("可召唤援军: " + (canCallReinforcements ? "是" : "否"));
+        System.out.println("Enemy type: " + (isElite ? "Elite" : "Regular"));
+        System.out.println("Can call reinforcement: " + (canCallReinforcements ? "True" : "False"));
     }
 
     @Override
     public String toCSVFormat() {
-        return super.toCSVFormat() + String.format(",%b,%b", isElite, canCallReinforcements);
-    }
-
-    // Getter 和 Setter
-    public boolean isElite() { return isElite; }
-    public void setElite(boolean elite) { isElite = elite; }
-    public boolean canCallReinforcements() { return canCallReinforcements; }
-    public void setCanCallReinforcements(boolean canCallReinforcements) {
-        this.canCallReinforcements = canCallReinforcements;
+        String var = "," + isElite + "," + canCallReinforcements + ",";
+        return super.toCSVFormat() + var;
     }
 }
