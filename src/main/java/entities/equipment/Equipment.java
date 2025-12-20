@@ -1,12 +1,12 @@
 package entities.equipment;
 
-import entities.abs.GameEntity;
+import entities.items.Item;
 import entities.characters.Character;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Equipment extends GameEntity {
+public abstract class Equipment extends Item {
     protected int requiredLevel;
     protected String slot; // 装备槽位：武器、头盔、衣服、鞋子等
     protected Map<String, Integer> stats;
@@ -16,14 +16,16 @@ public abstract class Equipment extends GameEntity {
         this.requiredLevel = 1;
         this.slot = "武器";
         this.stats = new HashMap<>();
+        this.itemType = "装备";
         initializeStats();
     }
 
     public Equipment(String name, String slot) {
-        super(name, nextId);
+        super(name, 50); // 装备基础价值50
         this.requiredLevel = 1;
         this.slot = slot;
         this.stats = new HashMap<>();
+        this.itemType = "装备";
         initializeStats();
     }
 
@@ -96,15 +98,25 @@ public abstract class Equipment extends GameEntity {
     }
 
     @Override
+    public void use() {
+        System.out.println("使用装备: " + name);
+        System.out.println("槽位: " + slot);
+        System.out.println("需求等级: " + requiredLevel);
+    }
+
+    @Override
     public void displayInfo() {
         System.out.println("=== 装备信息 ===");
         System.out.println("名称: " + name);
+        System.out.println("类型: " + itemType);
         System.out.println("槽位: " + slot);
         System.out.println("需求等级: " + requiredLevel);
+        System.out.println("价值: " + value);
         System.out.println("属性:");
         for (Map.Entry<String, Integer> entry : stats.entrySet()) {
             System.out.println("  " + entry.getKey() + ": " + entry.getValue());
         }
+        System.out.println("描述: " + description);
     }
 
     @Override

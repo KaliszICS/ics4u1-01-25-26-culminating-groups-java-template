@@ -1,7 +1,8 @@
+// Character.java
 package entities.characters;
 
 import entities.abs.BattleUnit;
-import entities.equipment.Equipment;
+import entities.equipment.*;
 
 public class Character extends BattleUnit {
     protected int level;

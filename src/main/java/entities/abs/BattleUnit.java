@@ -1,7 +1,5 @@
 package entities.abs;
 
-import entities.abs.GameEntity;
-
 public abstract class BattleUnit extends GameEntity {
     protected int maxHP;
     protected int currentHP;
@@ -93,6 +91,7 @@ public abstract class BattleUnit extends GameEntity {
 
     @Override
     public String toCSVFormat() {
-        return super.toCSVFormat() + String.format(",%d,%d,%d,%d,%d", maxHP, currentHP, attack, defense, speed);
+        return super.toCSVFormat() + String.format(",%d,%d,%d,%d,%d",
+                maxHP, currentHP, attack, defense, speed);
     }
 }

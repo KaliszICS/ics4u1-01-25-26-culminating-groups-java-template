@@ -8,11 +8,15 @@ public abstract class Item extends GameEntity implements GachaPullable {
     protected int weight;
     protected boolean stackable;
 
+    // 添加新属性：物品类型
+    protected String itemType;
+
     public Item() {
         super();
         this.value = 10;
         this.weight = 1;
         this.stackable = true;
+        this.itemType = "普通物品";
     }
 
     public Item(String name, int value) {
@@ -20,13 +24,15 @@ public abstract class Item extends GameEntity implements GachaPullable {
         this.value = value;
         this.weight = 1;
         this.stackable = true;
+        this.itemType = "普通物品";
     }
 
-    public Item(String name, int id, int value, int weight, boolean stackable) {
+    public Item(String name, int id, int value, int weight, boolean stackable, String itemType) {
         super(name, id);
         this.value = value;
         this.weight = weight;
         this.stackable = stackable;
+        this.itemType = itemType;
     }
 
     public abstract void use();
@@ -47,6 +53,7 @@ public abstract class Item extends GameEntity implements GachaPullable {
     public void displayInfo() {
         System.out.println("=== 物品信息 ===");
         System.out.println("名称: " + name);
+        System.out.println("类型: " + itemType);
         System.out.println("价值: " + value);
         System.out.println("重量: " + weight);
         System.out.println("可堆叠: " + (stackable ? "是" : "否"));
@@ -55,7 +62,8 @@ public abstract class Item extends GameEntity implements GachaPullable {
 
     @Override
     public String toCSVFormat() {
-        return super.toCSVFormat() + String.format(",%d,%d,%b", value, weight, stackable);
+        return super.toCSVFormat() + String.format(",%d,%d,%b,%s",
+                value, weight, stackable, itemType);
     }
 
     // Getter 和 Setter
@@ -65,4 +73,6 @@ public abstract class Item extends GameEntity implements GachaPullable {
     public void setWeight(int weight) { this.weight = weight; }
     public boolean isStackable() { return stackable; }
     public void setStackable(boolean stackable) { this.stackable = stackable; }
+    public String getItemType() { return itemType; }
+    public void setItemType(String itemType) { this.itemType = itemType; }
 }
