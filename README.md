@@ -13,7 +13,7 @@ AI Package | :heavy_check_mark: | Kumail
 Inventory Package | :factory_worker: | Shaoyang
 Config Package | :factory_worker: | Kyler
 Save Package | :factory_worker: | Kyler
-FileIO Package | :factory_worker: | Rajeeve
+FileIO Package | :heavy_check_mark: | Rajeeve
 Algorithms Package | :factory_worker: | Rajeeve
 Character Data | :thinking: | Not Assigned Yet
 Gameplay | :thinking:  | Not Assigned Yet
