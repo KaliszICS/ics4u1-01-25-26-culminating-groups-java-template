@@ -41,7 +41,7 @@ public class SearchAlgorithms {
         }
         return null;
     }
-
+          
     public Item recursiveSearch(List<Item> items, int index, String criteria)
     {
         if (items == null || criteria == null) {
