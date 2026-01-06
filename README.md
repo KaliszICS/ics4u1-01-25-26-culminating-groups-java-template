@@ -8,12 +8,12 @@ To Do | Completion? | Owners
 :------------ | :------------- | :-------------  
 Entities Package | :heavy_check_mark: | Shaoyang
 Gacha Package | :heavy_check_mark: | Shaoyang
-Battle Package | :factory_worker: | Kumail
-AI Package | :factory_worker: | Kumail
+Battle Package | :heavy_check_mark: | Kumail
+AI Package | :heavy_check_mark: | Kumail
 Inventory Package | :factory_worker: | Shaoyang
 Config Package | :factory_worker: | Kyler
 Save Package | :factory_worker: | Kyler
-FileIO Package | :factory_worker: | Rajeeve
+FileIO Package | :heavy_check_mark: | Rajeeve
 Algorithms Package | :factory_worker: | Rajeeve
 Character Data | :thinking: | Not Assigned Yet
 Gameplay | :thinking:  | Not Assigned Yet
@@ -29,8 +29,8 @@ Legend
 
 
 
-**UML (updated on 25/12/19 Version 1.2)**
-![UML Diagram of Project](https://cdn.us1.chensao.cc/svg/plantuml-diagram1.2.svg)
+**UML (updated on 26/-1/-5 Version 1.3)**
+![UML Diagram of Project](https://cdn.us1.chensao.cc/svg/plantuml-diagram1.3.svg)
 
 
 **Reports**
