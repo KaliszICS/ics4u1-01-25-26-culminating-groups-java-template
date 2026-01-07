@@ -8,7 +8,7 @@ public class SearchAlgorithms {
     public SearchAlgorithms() {
     }
 
-    public Item BinarySearch(List<Item> items, String name) {
+    public Item binarySearch(List<Item> items, String name) {
         if (items == null || items.isEmpty() || name == null) {
             return null;
         }
@@ -59,6 +59,7 @@ public class SearchAlgorithms {
     }
 
 }
+
 
 
 
