@@ -7,8 +7,8 @@ public final class Damage{
     private Damage() {}
 
     public static int compute(int atk, int def, double crit, double critDmg) {
-        final double Def_Factor = 0.5;           //TBD value idk what to put the number at rn, so it will be at 0.5
-        int base = (int)Math.max(1, Math.round(atk - def * Def_Factor));
+        final double def_Factor = 0.5;           //TBD value idk what to put the number at rn, so it will be at 0.5
+        int base = (int)Math.max(1, Math.round(atk - def * def_Factor));
 
         //basically gives the damage a range 
         double variance = 0.85 + RNG.nextDouble() * 0.15;  
