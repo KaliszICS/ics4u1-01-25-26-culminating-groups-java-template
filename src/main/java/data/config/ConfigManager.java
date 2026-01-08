@@ -4,8 +4,6 @@ import util.fileio.FileHandler;
 import java.util.*;
 import java.io.*;
 
-import entities.enemies.*;
-
 public class ConfigManager{
     private Properties configProps;
     private String configPath;
