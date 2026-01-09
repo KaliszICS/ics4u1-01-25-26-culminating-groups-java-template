@@ -1,12 +1,16 @@
 package entities.characters;
 
+import entities.abs.BattleUnit;
 import entities.equipment.Equipment;
 
 /**
- * The type Playable character.
+ * This class describes a playable character, with a boolean of whether the class can be controlled by a player,
+ * friendship level, also inherited from the parent class: {@link Character}
  *
  * @author Shaoyang Chen
  * @version 1.4.1
+ * @see BattleUnit
+ * @see Equipment
  */
 public class PlayableCharacter extends Character {
     /**
@@ -74,9 +78,9 @@ public class PlayableCharacter extends Character {
     public int getFriendshipLevel() { return friendshipLevel; }
 
     /**
-     * Sets friendship level.
+     * Sets friendship level of the character
      *
-     * @param friendshipLevel the friendship level
+     * @param friendshipLevel the friendship level to set
      */
     public void setFriendshipLevel(int friendshipLevel) { this.friendshipLevel = friendshipLevel; }
 
@@ -90,7 +94,7 @@ public class PlayableCharacter extends Character {
     }
 
     /**
-     * Increase friendship.
+     * Increase friendship of the characters.
      */
     public void increaseFriendship() {
         friendshipLevel++;
@@ -105,9 +109,9 @@ public class PlayableCharacter extends Character {
     }
 
     /**
-     * Increase friendship.
+     * Increase friendship of the characters.
      *
-     * @param amount the amount
+     * @param amount the amount of friendship to increase
      */
     public void increaseFriendship(int amount) {
         friendshipLevel += amount;
@@ -116,7 +120,7 @@ public class PlayableCharacter extends Character {
 
 
     /**
-     * Displays the info of this playable character
+     * Displays (prints) the info of this playable character
      */
     @Override
     public void displayInfo() {
