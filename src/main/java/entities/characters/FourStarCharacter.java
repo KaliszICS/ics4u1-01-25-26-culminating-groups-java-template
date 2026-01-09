@@ -1,7 +1,8 @@
 package entities.characters;
 
 /**
- * The type Four star character.
+ * Represents a four star character, with standard level of attributes.
+ * This class is inherited from {@link PlayableCharacter}
  * @author Shaoyang Chen
  * @version 1.4.1
  */
