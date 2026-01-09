@@ -14,7 +14,7 @@ public class FileHandler {
     public  File file;
 
     public FileHandler() {
-        this.outputFormat = "TXT";
+        this.outputformat = "TXT";
     }
     public FileHandler(String format) {
         this.outputformat = format;
