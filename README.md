@@ -11,12 +11,12 @@ Gacha Package | :heavy_check_mark: | Shaoyang
 Battle Package | :heavy_check_mark: | Kumail
 AI Package | :heavy_check_mark: | Kumail
 Inventory Package | :heavy_check_mark: | Shaoyang
-Config Package | :factory_worker: | Kyler
-Save Package | :factory_worker: | Kyler
+Config Package | :heavy_check_mark: | Kyler
+Save Package | :heavy_check_mark: | Kyler
 FileIO Package | :heavy_check_mark: | Rajeeve
 Algorithms Package | :heavy_check_mark: | Rajeeve
 Character Data | :heavy_check_mark: | Done
-Gameplay | :thinking:  | Not Assigned Yet
+Gameplay | :factory_worker:  | Not Assigned Yet
 
 Legend
 - :white_check_mark: Means 100% completed
